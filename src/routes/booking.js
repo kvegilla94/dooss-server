@@ -4,11 +4,10 @@ const router = express.Router();
 
 router.post("/", bookingController.create);
 
+router.get("/:id", bookingController.getBookingsById);
+
 router.get("/", (req, res) => {
   res.send("Get All Booking route");
-});
-router.get("/:id", (req, res) => {
-  res.send("Get All Booking by UserId route");
 });
 
 module.exports = router;

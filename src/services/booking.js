@@ -13,6 +13,14 @@ const create = async ({ userId, date, time, appointmentType, dentistId }) => {
   return booking.id;
 };
 
+const getBookingsById = (bookingId) => {
+  const bookings = Booking.findOne({
+    where: { id: bookingId },
+  });
+  return bookings;
+};
+
 module.exports = {
   create,
+  getBookingsById,
 };

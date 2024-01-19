@@ -17,6 +17,12 @@ const create = async (req, res) => {
   res.status(200).json({ success: true, data: { bookingId } });
 };
 
+const getBookingsById = async (req, res) => {
+  const bookings = await bookingService.getBookingsById(req.params.id);
+  res.status(200).json({ success: true, data: bookings });
+};
+
 module.exports = {
   create,
+  getBookingsById,
 };
