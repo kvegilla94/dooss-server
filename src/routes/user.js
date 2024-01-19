@@ -16,9 +16,11 @@ router.post("/", async (req, res) => {
   });
 });
 
-router.get("/", async (req, res) => {
-  const users = await User.findAll({
+router.get("/:id", async (req, res) => {
+  const users = await User.findOne({
+    where: { id: req.params.id },
     include: [{ model: Booking, as: "bookings" }],
+    order: [[{ model: Booking, as: "bookings" }, "id", "DESC"]],
   });
   res.status(201).json({
     success: true,
