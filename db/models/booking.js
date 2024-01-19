@@ -25,9 +25,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         field: "dentist_id",
       },
-      schedule: {
+      date: {
         type: DataTypes.DATE,
-        field: "schedule",
+        field: "date",
+      },
+      time: {
+        type: DataTypes.STRING,
+        field: "time",
       },
     },
     {
