@@ -1,20 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const userController = require("../controllers/user");
 const { User, Booking } = require("../../db/models");
 
-router.post("/", async (req, res) => {
-  const data = {
-    firstName: "Kelvin",
-    lastName: "Vegilla",
-    email: "kelvin.vegilla.715@gmail.com",
-  };
+router.post("/generateOtp", userController.generateOtp);
 
-  const user = await User.create(data);
-  res.status(201).json({
-    success: true,
-    data,
-  });
-});
+router.post("/login", userController.login);
 
 router.get("/:id", async (req, res) => {
   const users = await User.findOne({
