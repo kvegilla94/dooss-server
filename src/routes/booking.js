@@ -6,6 +6,8 @@ router.post("/", bookingController.create);
 
 router.get("/:id", bookingController.getBookingsById);
 
+router.patch("/:id", bookingController.update);
+
 router.get("/", (req, res) => {
   res.send("Get All Booking route");
 });

@@ -10,7 +10,7 @@ const checkIfExist = async ({ email, lastName, firstName }) => {
       return null;
     }
   }
-  return user.id;
+  return user;
 };
 
 const create = async ({ email, lastName, firstName }) => {

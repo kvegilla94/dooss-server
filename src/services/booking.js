@@ -21,7 +21,18 @@ const getBookingsById = (bookingId) => {
   return bookings;
 };
 
+const update = (id, data) => {
+  const booking = Booking.update(data, {
+    where: {
+      id,
+    },
+  });
+
+  return booking;
+};
+
 module.exports = {
   create,
   getBookingsById,
+  update,
 };
