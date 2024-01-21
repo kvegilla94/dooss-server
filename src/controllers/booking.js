@@ -5,10 +5,10 @@ const create = async (req, res) => {
   const { firstName, lastName, email, date, time, dentist, appointmentType } =
     req.body;
   // Check if user exists, create if not;
-  const userId = await userService.checkIfExist({ email, firstName, lastName });
+  const user = await userService.checkIfExist({ email, firstName, lastName });
   // Create booking
   const bookingId = await bookingService.create({
-    userId,
+    userId: user.id,
     date,
     time,
     dentistId: dentist,
@@ -22,7 +22,13 @@ const getBookingsById = async (req, res) => {
   res.status(200).json({ success: true, data: bookings });
 };
 
+const update = async (req, res) => {
+  const booking = await bookingService.update(req.params.id, req.body);
+  res.status(200).json({ success: true, data: { message: "Booking updated" } });
+};
+
 module.exports = {
   create,
   getBookingsById,
+  update,
 };

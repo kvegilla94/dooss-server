@@ -2,11 +2,11 @@ const userService = require("../services/user");
 
 const generateOtp = async (req, res) => {
   const { email } = req.body;
-  const userId = await userService.checkIfExist({
+  const user = await userService.checkIfExist({
     email,
   });
 
-  if (!userId) {
+  if (!user) {
     res.status(400).json({
       success: false,
       data: {
@@ -15,17 +15,17 @@ const generateOtp = async (req, res) => {
     });
   }
 
-  await userService.generateOtp(userId);
+  await userService.generateOtp(user.id);
   res.status(200).json({ success: true, data: { message: "OTP generated" } });
 };
 
 const login = async (req, res) => {
   const { email, otp } = req.body;
-  const userId = await userService.checkIfExist({
+  const user = await userService.checkIfExist({
     email,
   });
 
-  if (!userId) {
+  if (!user.id) {
     res.status(400).json({
       success: false,
       data: {
@@ -34,8 +34,8 @@ const login = async (req, res) => {
     });
   }
 
-  const { success, message } = await userService.login(userId, otp);
-  res.status(200).json({ success, data: { message } });
+  const { success, message } = await userService.login(user.id, otp);
+  res.status(200).json({ success, data: { message, user } });
 };
 
 module.exports = {
