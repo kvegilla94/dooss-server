@@ -1,5 +1,5 @@
 const { addMinutes, isBefore } = require("date-fns");
-const { User, OTP } = require("../../db/models");
+const { User, OTP, Booking } = require("../../db/models");
 const checkIfExist = async ({ email, lastName, firstName }) => {
   const user = await User.findOne({ where: { email } });
 
@@ -39,8 +39,19 @@ const login = async (userId, otp) => {
   return { success: true, message: "Logged in" };
 };
 
+const getUserById = async (id) => {
+  const user = await User.findOne({
+    where: { id },
+    include: [{ model: Booking, as: "bookings" }],
+    order: [[{ model: Booking, as: "bookings" }, "id", "DESC"]],
+  });
+  if (user) return { success: true, result: user };
+  return { success: false, result: "User not found" };
+};
+
 module.exports = {
   checkIfExist,
   generateOtp,
   login,
+  getUserById,
 };
