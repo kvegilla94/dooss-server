@@ -35,7 +35,7 @@ const login = async (req, res) => {
   }
 
   const { success, message } = await userService.login(userId, otp);
-  res.status(success ? 200 : 400).json({ success, data: { message } });
+  res.status(200).json({ success, data: { message } });
 };
 
 module.exports = {
