@@ -7,6 +7,7 @@ const create = async ({ userId, date, time, appointmentType, dentistId }) => {
     time,
     dentistId,
     appointmentType,
+    status: "BOOKED",
   };
 
   const booking = await Booking.create(bookingData);
