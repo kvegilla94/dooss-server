@@ -1,5 +1,4 @@
-const userService = require("../services/user");
-const bookingService = require("../services/booking");
+const { userService, bookingService } = require("../services");
 
 const create = async (req, res) => {
   const { firstName, lastName, email, date, time, dentist, appointmentType } =

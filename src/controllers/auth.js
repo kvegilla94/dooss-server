@@ -1,4 +1,4 @@
-const userService = require("../services/user");
+const { userService } = require("../services");
 
 const generateOtp = async (req, res) => {
   const { email } = req.body;

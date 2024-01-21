@@ -1,5 +1,4 @@
-const userService = require("../services/user");
-const { User, Booking } = require("../../db/models");
+const { userService } = require("../services");
 
 const getUserById = async (req, res) => {
   const { success, result } = await userService.getUserById(req.params.id);
