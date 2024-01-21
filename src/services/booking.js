@@ -1,4 +1,4 @@
-const { Booking } = require("../../db/models");
+const { Booking, Dentist } = require("../../db/models");
 
 const create = async ({ userId, date, time, appointmentType, dentistId }) => {
   const bookingData = {
@@ -17,6 +17,7 @@ const create = async ({ userId, date, time, appointmentType, dentistId }) => {
 const getBookingsById = (bookingId) => {
   const bookings = Booking.findOne({
     where: { id: bookingId },
+    include: [{ model: Dentist, as: "dentist" }],
   });
   return bookings;
 };
